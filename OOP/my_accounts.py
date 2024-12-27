@@ -2,7 +2,7 @@ import datetime
 # import pytz
 
 class Account:
-    """ Simple account class with balance """
+    """ Simple account class with __balance """
 
     @staticmethod
     def _current_time():
@@ -12,26 +12,28 @@ class Account:
 
     def __init__(self, name, balance):
         self.name = name
-        self.balance = balance
+        self.__balance = 0
         self.transaction_list = []
         print("Account created for " + self.name)
+        self.deposit(balance)
+        self.show_balance()
 
     def deposit(self, ammount):
         if ammount > 0:
-            self.balance += ammount
+            self.__balance += ammount
             self.show_balance()
             self.transaction_list.append((Account._current_time(), ammount))
     
     def withdraw(self, amount):
-        if 0 < amount <= self.balance:
-            self.balance -= amount
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
             self.transaction_list.append((Account._current_time(), amount))
         else:
             print("The amount must be positive and less than your total money")
         self.show_balance()
 
     def show_balance(self):
-        print(f'Balance is {self.balance}')
+        print(f'Balance is {self.__balance}')
 
     def show_transactions(self):
         for date, amount in self.transaction_list:
@@ -43,6 +45,7 @@ class Account:
             print('{:6} {} on ({})'.format(amount, tran_type, datetime.datetime.now()))
 
 if __name__ == '__main__':
+    # Here to test the program
     tim = Account("Tim", 0)
     tim.show_balance()
 
