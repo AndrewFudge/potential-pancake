@@ -1,5 +1,4 @@
 import datetime
-# import pytz
 
 class Account:
     """ Simple account class with __balance """
@@ -47,9 +46,17 @@ class Account:
 if __name__ == '__main__':
     # Here to test the program
     tim = Account("Tim", 0)
-    tim.show_balance()
+    # tim.show_balance()
 
     tim.deposit(1000)
     tim.withdraw(500)
     # tim.withdraw(60)
     tim.show_balance()
+
+    bob = Account("Bob", 1000)
+    # bob.show_balance()
+
+    bob.deposit(1000)
+    bob.withdraw(500)
+    # tim.withdraw(60)
+    bob.show_balance()
