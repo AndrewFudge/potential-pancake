@@ -16,6 +16,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ' 3.12.6'
+      - name: Test env vars for python
+        run: python -c 'import os;print(os.environ)'
+        env:
+          PG_PORT: ${{ secrets.PG_PORT }} 
       - name: install requirements
         run: make requirements
       - name: dev setup
